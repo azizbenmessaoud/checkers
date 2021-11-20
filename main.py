@@ -1,6 +1,6 @@
 import pygame
 from checkers.contants import WIDTH, HEIGHT
-# from checkers.game import Game
+from checkers.game import Game
 
 # screen 
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -11,7 +11,7 @@ def main():
     run = True
     fps = 60
     clock = pygame.time.Clock()
-    # game = Game()
+    game = Game(SCREEN)
 
     while run:
         clock.tick(60)
@@ -22,7 +22,7 @@ def main():
             if event.type == pygame.QUIT:
                 run = False
 
-        pygame.display.update()
+        game.update()
 
     pygame.quit()
 
