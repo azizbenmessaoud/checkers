@@ -1,4 +1,5 @@
-from checkers.contants import RED, WHITE, COLS, ROWS
+import pygame
+from checkers.contants import BLACK, RED, WHITE, COLS, ROWS, SQUARESIZE
 from checkers.piece import Piece
 
 class Board:
@@ -21,3 +22,17 @@ class Board:
                         self.board[row].append(0)
                 else:
                     self.board[row].append(0)
+
+    def draw_squares(self, win):
+        win.fill(BLACK)
+        for row in range(ROWS):
+            for col in range(row % 2, COLS, 2):
+                pygame.draw.rect(win, RED, (row*SQUARESIZE, col*SQUARESIZE, SQUARESIZE, SQUARESIZE))
+
+    def draw(self, win):
+        self.draw_squares(win)
+        for row in range(ROWS):
+            for col in range(COLS):
+                piece = self.board[row][col]
+                if piece != 0:
+                    piece.draw(win)
